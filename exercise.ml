@@ -89,3 +89,23 @@ let drop list n =
 in
 aux [] 1 list
 ;;
+
+
+(* Split a List Into Two Parts; The Length of the First Part Is Given *)
+let split list n = 
+  let rec aux acc count = function
+  | [] -> ((List.rev acc), [])
+  | h :: t as l -> if count=0 then ((List.rev acc), l) else aux (h::acc) (count-1) t
+in
+aux [] n list
+;;
+
+
+(* Extract a Slice From a List  *)
+let slice list i j = 
+  let rec aux acc count = function
+  | [] -> List.rev acc
+  | h :: t -> if count < i then aux acc (count+1) t else if count > j then List.rev acc else aux (h :: acc) (count+1) t
+in
+aux [] 0 list
+;;
