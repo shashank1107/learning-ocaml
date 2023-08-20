@@ -109,3 +109,30 @@ let slice list i j =
 in
 aux [] 0 list
 ;;
+
+(* Rotate a List N Places to the Left *)
+let rotate list n = 
+  let rec aux acc count = function
+  | [] -> acc
+  | h :: t as l -> if count = 0  then (l @ (List.rev acc)) else aux (h::acc) (count-1) t
+in 
+aux [] n list
+;;
+
+(* Remove the K'th Element From a List *)
+let remove_at k list = 
+  let rec aux acc count = function
+  | [] -> list
+  | h :: t -> if count = 0 then ((List.rev acc) @ t) else aux (h::acc) (count-1) t
+in
+aux [] k list
+;;
+
+(* Insert an Element at a Given Position Into a List *)
+let insert_at str k list =
+  let rec aux acc count = function
+  | [] -> List.rev (str :: acc)
+  | h :: t as l -> if count = 0 then ((List.rev (str::acc)) @ l) else aux (h::acc) (count-1) t
+  in
+  aux [] k list
+;; 
