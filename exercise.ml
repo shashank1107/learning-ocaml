@@ -136,3 +136,16 @@ let insert_at str k list =
   in
   aux [] k list
 ;; 
+
+(* Create a List Containing All Integers Within a Given Range *)
+let range i j = 
+  let rec aux acc low high = if high < low then acc else aux (high::acc) low (high-1)
+in
+if i > j then aux [] j i else aux [] i j
+;;
+
+(* Extract a Given Number of Randomly Selected Elements From a List *)
+let rand_select list num = 
+  let rec aux acc i = if i = 0 then [] else aux ((Random.int (Array.length list)) :: acc) (i-1)
+in aux [] num
+;;   
